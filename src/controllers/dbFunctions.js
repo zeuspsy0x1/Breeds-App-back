@@ -7,10 +7,10 @@ const getTemperamentsAndSendThemToDb = async () => {
 		let InDbOrNot = await Temperament.findAll()
 
 		if (InDbOrNot.length === 124) {
-			console.log('NICE!-all temperaments are in db')
+			return console.log('NICE!-all temperaments are in db')
 		}
 
-		if (InDbOrNot.length < 124) {
+		if (InDbOrNot.length < 123) {
 			let get = await axios.get(`https://api.thedogapi.com/v1/breeds?${API_KEY}`)
 			let res = get.data.map((breed) => breed.temperament)
 			let temperaments = res.join(', ').toLowerCase()
