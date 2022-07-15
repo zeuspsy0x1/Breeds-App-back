@@ -1,6 +1,5 @@
 const axios = require('axios')
 const { Breed, Temperament } = require('../db')
-const { API_KEY } = process.env
 
 const getTemperamentsAndSendThemToDb = async () => {
 	try {
@@ -11,7 +10,7 @@ const getTemperamentsAndSendThemToDb = async () => {
 		}
 
 		if (InDbOrNot.length < 123) {
-			let get = await axios.get(`https://api.thedogapi.com/v1/breeds?${API_KEY}`)
+			let get = await axios.get(`https://api.thedogapi.com/v1/breeds`)
 			let res = get.data.map((breed) => breed.temperament)
 			let temperaments = res.join(', ').toLowerCase()
 			let pushos = []
